@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity">
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:background="@drawable/bcg_login" />
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:weightSum="20">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:id="@+id/fotoProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:src="@drawable/user" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/namaProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="NAMAMU"
+                    android:textStyle="bold"
+                    android:textColor="#1789c1"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/nipProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:text="NIP 123456789"
+                    android:textColor="#1789c1"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:background="@drawable/logo_home" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:id="@+id/menuDailyJoblist"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:background="@drawable/bcg_menu_home"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="5">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:src="@drawable/icon_daily_vas" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:text="Job Daily VAS" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--<LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:service_id="@+service_id/menuVisitMaintenance"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/bcg_menu_home"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="5">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:src="@drawable/icon_survey" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="Visit Maintenance" />
+                    </LinearLayout>
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:id="@+id/menuJobDailyTS"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:background="@drawable/bcg_menu_home"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="5">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:src="@drawable/icon_daily_job_ts" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:text="Job Daily TS" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:background="#f08120"
+                android:visibility="gone">
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

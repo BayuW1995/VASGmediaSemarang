@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu_history_vas.HistoryVAS">
+
+    <ListView
+        android:id="@+id/lv_history_ts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/transparant"
+        android:padding="10dp">
+
+    </ListView>
+</RelativeLayout>

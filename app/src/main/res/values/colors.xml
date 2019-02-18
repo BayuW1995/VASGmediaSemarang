@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03b9ff</color>
+    <color name="colorPrimaryDark">#16b1eb</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="transparant">#00000000</color>
+    <color name="notifBarKuning">#e98706</color>
+    <color name="layoutKuning">#FFF79436</color>
+    <color name="layoutBiru">#02b9ff</color>
+</resources>

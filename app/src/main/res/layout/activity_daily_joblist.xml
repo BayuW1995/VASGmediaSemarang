@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="22"
+    tools:context=".menu_job_daily_vas.JobDailyVAS">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Input Tanggal"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtTanggalJobDailyVAS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/btnTanggalJobDailyVAS"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/icon_kalender" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#b6b6b6" />
+            </LinearLayout>
+
+            <!--<Button
+                android:service_id="@+service_id/btnTambahKlien"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bcg_tambahklien_job_daily"
+                android:text="Tambah klien"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />-->
+
+            <LinearLayout
+                android:id="@+id/table_job_daily_vas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="1dp"
+                        android:paddingRight="1dp"
+                        android:paddingBottom="1dp">
+
+                        <gmedia.net.id.vasgmediasemarang.utils.WrapContentListView
+                            android:id="@+id/lvJobDailyVAS"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@color/transparant"
+                            android:nestedScrollingEnabled="true"
+                            android:scrollbars="none">
+
+                        </gmedia.net.id.vasgmediasemarang.utils.WrapContentListView>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/btnPublishJobDailyVAS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#717171">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Publish"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btnTambahKlienJobDailyVAS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/layoutBiru">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Tambah Klien"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
