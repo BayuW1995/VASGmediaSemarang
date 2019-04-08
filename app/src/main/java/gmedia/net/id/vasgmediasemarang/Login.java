@@ -55,9 +55,6 @@ public class Login extends AppCompatActivity {
 					return;
 				} else {
 					prepareLogin();
-					Intent intent = new Intent(Login.this, MainActivity.class);
-					startActivity(intent);
-					finish();
 				}
 			}
 		});

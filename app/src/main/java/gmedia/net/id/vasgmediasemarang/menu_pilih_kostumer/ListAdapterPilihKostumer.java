@@ -50,7 +50,7 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 	}
 
 	private static class ViewHolder {
-		private TextView idkostumer, nama, alamat;
+		private TextView customer_id, service_id, nama, alamat;
 		private RelativeLayout btnProses;
 	}
 
@@ -59,7 +59,6 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 		notifyDataSetChanged();
 	}
 
-	@NonNull
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = new ViewHolder();
@@ -69,7 +68,8 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
             /*LayoutInflater inflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);*/
 			convertView = inflater.inflate(R.layout.view_lv_pilih_kostumer, null);
-			holder.idkostumer = (TextView) convertView.findViewById(R.id.txtIdKostumer);
+			holder.customer_id = (TextView) convertView.findViewById(R.id.txtCustomerID);
+			holder.service_id = (TextView) convertView.findViewById(R.id.txtServiceID);
 			holder.nama = (TextView) convertView.findViewById(R.id.txtNama);
 			holder.alamat = (TextView) convertView.findViewById(R.id.txtAlamat);
 			holder.btnProses = (RelativeLayout) convertView.findViewById(R.id.btnProsesPilihKostumer);
@@ -79,7 +79,8 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 		}
 		final ModelListPilihKostumer modelListPilihKostumer = listPilihKostumer.get(position);
 //		service_id = modelListPilihKostumer.getService_id();
-		holder.idkostumer.setText(modelListPilihKostumer.getIdkostumer());
+		holder.customer_id.setText(modelListPilihKostumer.getCustomer_id());
+		holder.service_id.setText(modelListPilihKostumer.getService_id());
 		holder.nama.setText(modelListPilihKostumer.getNama());
 		holder.alamat.setText(modelListPilihKostumer.getAlamat());
 		holder.btnProses.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +96,10 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 					@Override
 					public void onClick(View view) {
 						java.util.Calendar mcurrentTime = java.util.Calendar.getInstance();
-						int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
-						int minute = mcurrentTime.get(java.util.Calendar.MINUTE);
+						int hour = 9;
+						int minute = 0;
+//						int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
+//						int minute = mcurrentTime.get(java.util.Calendar.MINUTE);
 						TimePickerDialog mTimePicker;
 						mTimePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
 							@Override
@@ -140,7 +143,7 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 						JSONObject jBody = new JSONObject();
 						try {
 							jBody.put("date", tanggal);
-							jBody.put("customer_id", modelListPilihKostumer.getIdkostumer());
+							jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
 							jBody.put("service_id", modelListPilihKostumer.getService_id());
 							jBody.put("time", txtTime.getText().toString());
 							if (!isianKeterangan.getText().toString().equals("")) {
@@ -186,7 +189,7 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 						JSONObject jBody = new JSONObject();
 						try {
 							jBody.put("id", id);
-							jBody.put("customer_id", modelListPilihKostumer.getIdkostumer());
+							jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
 							jBody.put("service_id", modelListPilihKostumer.getService_id());
 							jBody.put("time", txtTime.getText().toString());
 							if (!isianKeterangan.getText().toString().equals("")) {
@@ -302,7 +305,7 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 							JSONObject jBody = new JSONObject();
 							try {
 								jBody.put("date", tanggal);
-								jBody.put("customer_id", modelListPilihKostumer.getIdkostumer());
+								jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
 								jBody.put("service_id", modelListPilihKostumer.getService_id());
 								jBody.put("time", txtTime.getText().toString());
 								if (!isianKeterangan.getText().toString().equals("")) {
@@ -356,7 +359,7 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 		JSONObject jBody = new JSONObject();
 		try {
 			jBody.put("date", tanggal);
-			jBody.put("customer_id", modelListPilihKostumer.getIdkostumer());
+			jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
 			jBody.put("service_id", modelListPilihKostumer.getService_id());
 			jBody.put("time", txtTime.getText().toString());
 			if (!isianKeterangan.getText().toString().equals("")) {

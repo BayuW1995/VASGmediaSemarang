@@ -2,15 +2,19 @@ package gmedia.net.id.vasgmediasemarang;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -32,12 +36,18 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import gmedia.net.id.vasgmediasemarang.menu_history_ts.HistoryTS;
 import gmedia.net.id.vasgmediasemarang.menu_history_vas.HistoryVAS;
 import gmedia.net.id.vasgmediasemarang.menu_job_daily_ts.JobDailyTS;
 import gmedia.net.id.vasgmediasemarang.menu_job_daily_vas.JobDailyVAS;
+import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
+import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
+import gmedia.net.id.vasgmediasemarang.utils.Proses;
 import gmedia.net.id.vasgmediasemarang.utils.RuntimePermissionsActivity;
 import gmedia.net.id.vasgmediasemarang.utils.SessionManager;
 
@@ -57,20 +67,18 @@ public class MainActivity extends RuntimePermissionsActivity
 			{
 					R.drawable.icon_menu_home_menu_drawer,
 					R.drawable.icon_daily_job_menu_drawer,
-//					R.drawable.icon_visit_maintenance_menu_drawer,
-					R.drawable.icon_history_survei_menu_drawer,
+//					R.drawable.icon_history_survei_menu_drawer,
 					R.drawable.icon_daily_job_menu_drawer,
-					R.drawable.icon_history_survei_menu_drawer,
+//					R.drawable.icon_history_survei_menu_drawer,
 					R.drawable.icon_logout_menu_drawer
 			};
 	private String teksMenu[] =
 			{
 					"Home",
 					"Daily Job Vas",
-//					"Visit Maintenance",
-					"History Survei VAS",
+//					"History Survei VAS",
 					"Daily Job TS",
-					"History Survei TS",
+//					"History Survei TS",
 					"Logout"
 			};
 	private RelativeLayout buttonSettting;
@@ -81,7 +89,9 @@ public class MainActivity extends RuntimePermissionsActivity
 	private String token = "";
 	private SessionManager session;
 	private boolean doubleBackToExitPressedOnce = false;
-
+	private Proses proses;
+	private String version, latestVersion, link;
+	private boolean updateRequired;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,11 +106,90 @@ public class MainActivity extends RuntimePermissionsActivity
 			Log.d("token", e.getMessage());
 		}
 		session = new SessionManager(this);
+		proses = new Proses(this);
 		initPermission();
+		checkVersion();
 		initUI();
 		initAction();
 	}
 
+	private void checkVersion() {
+
+		PackageInfo pInfo = null;
+		version = "";
+
+		try {
+			pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		version = pInfo.versionName;
+//        getSupportActionBar().setSubtitle(getResources().getString(R.string.app_name) + " v "+ version);
+		latestVersion = "";
+		link = "";
+
+		ApiVolley request = new ApiVolley(MainActivity.this, new JSONObject(), "GET", LinkURL.UrlUpVersion, "", "", 0, new ApiVolley.VolleyCallback() {
+
+			@Override
+			public void onSuccess(String result) {
+
+				JSONObject responseAPI;
+				try {
+					responseAPI = new JSONObject(result);
+					String status = responseAPI.getJSONObject("metadata").getString("status");
+
+					if (status.equals("200")) {
+						latestVersion = responseAPI.getJSONObject("response").getString("version");
+						link = responseAPI.getJSONObject("response").getString("playstore_url");
+						updateRequired = ((responseAPI.getJSONObject("response").getString("is_required")).equals("1")) ? true : false;
+						if (!version.trim().equals(latestVersion.trim()) && link.length() > 0) {
+							final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+							if (updateRequired) {
+								builder.setIcon(R.mipmap.ic_launcher)
+										.setTitle("Update")
+										.setMessage("Versi terbaru " + latestVersion + " telah tersedia, mohon download versi terbaru.")
+										.setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+												startActivity(browserIntent);
+											}
+										})
+										.setCancelable(false)
+										.show();
+							} else {
+								builder.setIcon(R.mipmap.ic_launcher)
+										.setTitle("Update")
+										.setMessage("Versi terbaru " + latestVersion + " telah tersedia, mohon download versi terbaru.")
+										.setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+												startActivity(browserIntent);
+											}
+										})
+										.setNegativeButton("Update Nanti", new DialogInterface.OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												dialog.dismiss();
+											}
+										}).show();
+							}
+						}
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onError(String result) {
+
+				Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+			}
+		});
+	}
 
 	private void initPermission() {
 		if (ActivityCompat.checkSelfPermission(this,
@@ -162,26 +251,26 @@ public class MainActivity extends RuntimePermissionsActivity
 						startActivity(intentJobDailyVas);
 						drawer.closeDrawer(GravityCompat.START);
 						break;
-					case 2:
+					/*case 2:
 						Intent intentHistoryVAS = new Intent(MainActivity.this, HistoryVAS.class);
-						/*intentHistoryVAS.addCategory(Intent.CATEGORY_HOME);
-						intentHistoryVAS.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);*/
+						*//*intentHistoryVAS.addCategory(Intent.CATEGORY_HOME);
+						intentHistoryVAS.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);*//*
 						startActivity(intentHistoryVAS);
 						drawer.closeDrawer(GravityCompat.START);
-						break;
-					case 3:
+						break;*/
+					case 2:
 						Intent intentJobDailyTS = new Intent(MainActivity.this, JobDailyTS.class);
 						startActivity(intentJobDailyTS);
 						drawer.closeDrawer(GravityCompat.START);
 						break;
-					case 4:
+					/*case 4:
 						Intent intentHistoryTS = new Intent(MainActivity.this, HistoryTS.class);
-						/*intentHistoryTS.addCategory(Intent.CATEGORY_HOME);
-						intentHistoryTS.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);*/
+						*//*intentHistoryTS.addCategory(Intent.CATEGORY_HOME);
+						intentHistoryTS.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);*//*
 						startActivity(intentHistoryTS);
 						drawer.closeDrawer(GravityCompat.START);
-						break;
-					case 5:
+						break;*/
+					case 3:
 						session.logoutUser();
 						drawer.closeDrawer(GravityCompat.START);
 						break;

@@ -81,6 +81,7 @@ public class ListAdapterJobDailyTS extends ArrayAdapter {
 			public void onClick(View view) {
 				Intent intent = new Intent(context, DetailJobDailyTs.class);
 				intent.putExtra("id", model.getId());
+				intent.putExtra("statusSurvey",model.getStatus_survey());
 				((Activity) context).startActivity(intent);
 			}
 		});

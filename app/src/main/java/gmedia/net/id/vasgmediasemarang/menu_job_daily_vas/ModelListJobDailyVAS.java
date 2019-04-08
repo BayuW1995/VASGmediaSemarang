@@ -1,14 +1,16 @@
 package gmedia.net.id.vasgmediasemarang.menu_job_daily_vas;
 
 public class ModelListJobDailyVAS {
-	private String id, tgl, nama, alamat, jam, keterangan;
+	private String id, customerID, tgl, nama, alamat, jam, isReport, keterangan;
 
-	public ModelListJobDailyVAS(String id, String tanggalFromAPI, String nama_site, String alamat_site, String waktu, String note) {
+	public ModelListJobDailyVAS(String id, String customerID, String tanggalFromAPI, String nama_site, String alamat_site, String waktu, String isReport, String note) {
 		this.id = id;
+		this.customerID = customerID;
 		this.tgl = tanggalFromAPI;
 		this.nama = nama_site;
 		this.alamat = alamat_site;
 		this.jam = waktu;
+		this.isReport = isReport;
 		this.keterangan = note;
 	}
 
@@ -58,5 +60,21 @@ public class ModelListJobDailyVAS {
 
 	public void setKeterangan(String keterangan) {
 		this.keterangan = keterangan;
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+	public String getIsReport() {
+		return isReport;
+	}
+
+	public void setIsReport(String isReport) {
+		this.isReport = isReport;
 	}
 }

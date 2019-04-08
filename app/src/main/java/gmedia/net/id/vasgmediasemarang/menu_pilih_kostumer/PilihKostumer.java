@@ -24,6 +24,7 @@ import java.util.List;
 import gmedia.net.id.vasgmediasemarang.MainActivity;
 import gmedia.net.id.vasgmediasemarang.R;
 import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
+import gmedia.net.id.vasgmediasemarang.utils.EncodeURL;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
 import gmedia.net.id.vasgmediasemarang.utils.Proses;
 
@@ -124,7 +125,7 @@ public class PilihKostumer extends AppCompatActivity {
 		ArrayList<ModelListPilihKostumer> rvData = new ArrayList<>();
 		for (int i = 0; i < idKostumer.length; i++) {
 			ModelListPilihKostumer model = new ModelListPilihKostumer();
-			model.setIdkostumer(idKostumer[i]);
+			model.setCustomer_id(idKostumer[i]);
 			model.setNama(nama[i]);
 			model.setAlamat(alamat[i]);
 			rvData.add(model);
@@ -142,7 +143,7 @@ public class PilihKostumer extends AppCompatActivity {
 			public boolean onQueryTextSubmit(String s) {
 				/*search = s;
 				loadCustomer(true);*/
-				search = s;
+				search = EncodeURL.encodeURL(s);
 				prepareDataListPilihKostumer();
 				return true;
 			}

@@ -176,7 +176,8 @@ public class JobDailyTS extends AppCompatActivity {
 									isi.getString("waktu_selesai"),
 									isi.getString("lokasi"),
 									isi.getString("alamat"),
-									isi.getString("jenis_project")
+									isi.getString("jenis_project"),
+									isi.getString("survey_lastmile")
 							));
 						}
 						listView.setAdapter(null);

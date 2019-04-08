@@ -1,95 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/jenisEquipmentChild"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Floor, Rack, dan Environmen"
-        android:textColor="#846e47"
-        android:textSize="14sp" />
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutReportVASRadio"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/jenisEquipmentChildRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:textColor="#846e47"
+            android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Standart:"
-                android:textColor="#846e47"
-                android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <RadioButton
+                <!--<TextView
+                    android:id="@+id/standardReportVASRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:textColor="#846e47"
+                    android:textSize="14sp" />-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <RadioGroup
+                        android:id="@+id/radioGrup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:text="OK" />
+
+                        <RadioButton
+                            android:id="@+id/radio2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:text="NOK" />
+
+                        <RadioButton
+                            android:id="@+id/radio3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:text="N/A" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Result:"
+                android:layout_marginTop="5dp"
+                android:text="Note:"
                 android:textColor="#846e47"
                 android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp" />
-            </LinearLayout>
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/noteRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparant"
+            android:hint="Ketik Disini..."
+            android:paddingTop="5dp"
+            android:textColor="#846e47"
+            android:textColorHint="#70846e47"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E8E8E8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutReportVASTeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/jenisEquipmentChildTeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#846e47"
+            android:textSize="14sp" />
+
+        <!--<TextView
+            android:id="@+id/standardReportVASTeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#846e47"
+            android:textSize="14sp" />-->
+
+        <EditText
+            android:id="@+id/noteTeks1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparant"
+            android:hint="Wajib Di Isi..."
+            android:paddingTop="5dp"
+            android:textColor="#846e47"
+            android:textColorHint="#70846e47"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E8E8E8" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Remark:"
+            android:text="Note:"
             android:textColor="#846e47"
             android:textSize="14sp" />
-    </LinearLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#846e47"
-        android:textSize="14sp" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/noteTeks2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparant"
+            android:hint="Ketik Disini..."
+            android:paddingTop="5dp"
+            android:textColor="#846e47"
+            android:textColorHint="#70846e47"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E8E8E8" />
+    </LinearLayout>
+</RelativeLayout><!--<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Result:"
+                        android:textColor="#846e47"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:id="@+id/grupResult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioRst1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:text="radio21" />
+
+                            <RadioButton
+                                android:id="@+id/radioRst2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="100dp"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:text="radio22" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>-->

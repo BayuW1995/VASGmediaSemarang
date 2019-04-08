@@ -296,14 +296,14 @@
                                 android:layout_weight="8"
                                 android:orientation="vertical">
 
-                                <gmedia.net.id.vasgmediasemarang.utils.WrapContentListView
+                                <ListView
                                     android:id="@+id/lv_detail_job_daily_ts"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:clickable="true"
                                     android:divider="@color/transparant">
 
-                                </gmedia.net.id.vasgmediasemarang.utils.WrapContentListView>
+                                </ListView>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>

@@ -37,27 +37,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="10dp">
 
-                    <RadioButton
+                    <RadioGroup
+                        android:id="@+id/radioGrupProject"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Selesai" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Belum Selesai" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Done" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Undone" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutFO"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -70,27 +78,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="10dp">
 
-                    <RadioButton
+                    <RadioGroup
+                        android:id="@+id/radioGrupFO"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cover" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Uncover" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cover" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Uncover" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutWireless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,19 +119,25 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="10dp">
 
-                    <RadioButton
+                    <RadioGroup
+                        android:id="@+id/radioGrupWireless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cover" />
+                        android:orientation="horizontal">
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Uncover" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cover" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Uncover" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
@@ -143,14 +165,14 @@
                 android:id="@+id/btnKirimReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginRight="30dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
                 android:layout_weight="1.5"
                 android:background="@drawable/bcg_btn_report_survey"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"

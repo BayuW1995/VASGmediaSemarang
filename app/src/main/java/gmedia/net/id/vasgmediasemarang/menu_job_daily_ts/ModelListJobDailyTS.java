@@ -2,15 +2,16 @@ package gmedia.net.id.vasgmediasemarang.menu_job_daily_ts;
 
 public class ModelListJobDailyTS {
 	private Boolean check;
-	private String id, waktuMulai, waktuSelesai, lokasi, alamat, jenis_job;
+	private String id, waktuMulai, waktuSelesai, lokasi, alamat, jenis_job, status_survey;
 
-	public ModelListJobDailyTS(String id, String waktuMulai, String waktuSelesai, String lokasi, String alamat, String jenis_project) {
+	public ModelListJobDailyTS(String id, String waktuMulai, String waktuSelesai, String lokasi, String alamat, String jenis_project, String status_survey) {
 		this.id = id;
 		this.waktuMulai = waktuMulai;
 		this.waktuSelesai = waktuSelesai;
 		this.lokasi = lokasi;
 		this.alamat = alamat;
 		this.jenis_job = jenis_project;
+		this.status_survey = status_survey;
 	}
 
 	public Boolean getCheck() {
@@ -67,5 +68,13 @@ public class ModelListJobDailyTS {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getStatus_survey() {
+		return status_survey;
+	}
+
+	public void setStatus_survey(String status_survey) {
+		this.status_survey = status_survey;
 	}
 }

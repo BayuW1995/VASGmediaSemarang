@@ -33,6 +33,7 @@ import gmedia.net.id.vasgmediasemarang.utils.ConvertDate;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
 import gmedia.net.id.vasgmediasemarang.utils.Proses;
 import gmedia.net.id.vasgmediasemarang.utils.SessionManager;
+import gmedia.net.id.vasgmediasemarang.utils.WrapContentListView;
 
 public class JobDailyVAS extends AppCompatActivity {
 
@@ -94,6 +95,7 @@ public class JobDailyVAS extends AppCompatActivity {
 	private SessionManager session;
 
 	@Override
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_daily_joblist);
@@ -162,15 +164,21 @@ public class JobDailyVAS extends AppCompatActivity {
 		btnPublish.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if (statusPublish.equals("draft")) {
+				preparePublished();
+				/*if (statusPublish.equals("0")) {
 					preparePublished();
 				} else {
 					Toast.makeText(JobDailyVAS.this, "sudah terpublish", Toast.LENGTH_LONG).show();
-				}
+				}*/
 			}
 		});
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		prepareDataJobDailyVAS();
+	}
 
 	private void initDefaultDate() {
 		Date c = Calendar.getInstance().getTime();
@@ -198,27 +206,30 @@ public class JobDailyVAS extends AppCompatActivity {
 						JSONObject response = object.getJSONObject("response");
 						JSONObject jadwal = response.getJSONObject("jadwal");
 						String tanggalFromAPI = jadwal.getString("tanggal");
-						statusPublish = jadwal.getString("status");
+						statusPublish = jadwal.getString("is_publish");
 						JSONArray details = response.getJSONArray("details");
 						for (int i = 0; i < details.length(); i++) {
 							JSONObject isi = details.getJSONObject(i);
 							list.add(new ModelListJobDailyVAS(
 									isi.getString("id"),
+									isi.getString("customer_id"),
 									tanggalFromAPI,
 									isi.getString("nama_site"),
 									isi.getString("alamat_site"),
 									isi.getString("waktu"),
+									isi.getString("is_report"),
 									isi.getString("note")
 							));
 						}
 						listView.setAdapter(null);
 						adapter = new ListAdapterJobDailyVAS(JobDailyVAS.this, list, statusPublish);
 						listView.setAdapter(adapter);
+						WrapContentListView.setListViewHeightBasedOnChildren(listView);
 						table.setVisibility(View.VISIBLE);
 					} else if (status.equals("401")) {
 						session.logoutUser();
 					} else {
-						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_SHORT).show();
 						table.setVisibility(View.GONE);
 					}
 				} catch (JSONException e) {
@@ -251,12 +262,13 @@ public class JobDailyVAS extends AppCompatActivity {
 					String status = object.getJSONObject("metadata").getString("status");
 					String message = object.getJSONObject("metadata").getString("message");
 					if (status.equals("200")) {
-						statusPublish = "published";
+						/*statusPublish = "published";
 						adapter = new ListAdapterJobDailyVAS(JobDailyVAS.this, list, statusPublish);
-						listView.setAdapter(adapter);
-						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_LONG).show();
+						listView.setAdapter(adapter);*/
+						prepareDataJobDailyVAS();
+						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_SHORT).show();
 					} else {
-						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(JobDailyVAS.this, message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

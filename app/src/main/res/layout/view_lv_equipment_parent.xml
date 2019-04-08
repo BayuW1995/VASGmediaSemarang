@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#F8F8F8"
     android:orientation="vertical"
     android:paddingTop="10dp"
@@ -17,10 +17,13 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <gmedia.net.id.vasgmediasemarang.utils.WrapContentListView
+    <ListView
         android:id="@+id/lv_equipment_child"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:divider="@color/transparant"
+        android:nestedScrollingEnabled="false"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"/>
+        android:paddingRight="20dp" />
 </LinearLayout>

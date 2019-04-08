@@ -12,7 +12,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
     <application
@@ -86,12 +86,24 @@
         <activity
             android:name=".menu_pilih_kostumer.PilihKostumer"
             android:screenOrientation="portrait" />
-        <activity android:name=".menu_job_daily_vas.JobDailyVAS" />
-        <activity android:name=".menu_equipment.Equipment" />
-        <activity android:name=".utils.Signature" />
-        <activity android:name=".menu_job_daily_ts.JobDailyTS" />
-        <activity android:name=".menu_detail_job_daily_ts.DetailJobDailyTs" />
-        <activity android:name=".menu_report_survey.ReportSurvey" />
+        <activity
+            android:name=".menu_job_daily_vas.JobDailyVAS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menu_equipment.Equipment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".utils.Signature"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menu_job_daily_ts.JobDailyTS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menu_detail_job_daily_ts.DetailJobDailyTs"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menu_report_survey.ReportSurvey"
+            android:screenOrientation="portrait" />
         <activity android:name=".menu_history_vas.HistoryVAS" />
         <activity android:name=".menu_history_ts.HistoryTS" />
         <activity

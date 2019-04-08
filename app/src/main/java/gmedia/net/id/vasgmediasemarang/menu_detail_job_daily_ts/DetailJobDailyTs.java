@@ -32,6 +32,7 @@ import gmedia.net.id.vasgmediasemarang.utils.ConvertDate;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
 import gmedia.net.id.vasgmediasemarang.utils.MapsActivity;
 import gmedia.net.id.vasgmediasemarang.utils.Proses;
+import gmedia.net.id.vasgmediasemarang.utils.WrapContentListView;
 
 public class DetailJobDailyTs extends AppCompatActivity {
 	private ListView listView;
@@ -56,10 +57,11 @@ public class DetailJobDailyTs extends AppCompatActivity {
 					"0852384243723"
 			};
 	private RelativeLayout btnReportSurvey;
-	public static String idJobDailyTS = "", latitude = "", longitude = "";
+	public static String idJobDailyTS = "", latitude = "", longitude = "", statusSurvey = "";
 	private Proses proses;
 	private TextView tanggal, waktu, namaLokasi, alamat, jenis_project, note;
 	private LinearLayout btnMaps;
+	private String layanan_fo = "", layanan_wireless = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			idJobDailyTS = bundle.getString("id");
+			statusSurvey = bundle.getString("statusSurvey");
 		}
 		initUI();
 		initAction();
@@ -111,6 +114,11 @@ public class DetailJobDailyTs extends AppCompatActivity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(DetailJobDailyTs.this, ReportSurvey.class);
+				intent.putExtra("layanan_fo", layanan_fo);
+				intent.putExtra("layanan_wireless", layanan_wireless);
+				intent.putExtra("id_job_daily_ts", idJobDailyTS);
+				intent.putExtra("jenis_project", jenis_project.getText().toString());
+				intent.putExtra("statusSurvey", statusSurvey);
 				startActivity(intent);
 			}
 		});
@@ -139,6 +147,8 @@ public class DetailJobDailyTs extends AppCompatActivity {
 						note.setText(detail.getString("note"));
 						latitude = detail.getString("latitude");
 						longitude = detail.getString("longitude");
+						layanan_fo = detail.getString("layanan_fo");
+						layanan_wireless = detail.getString("layanan_wireless");
 						JSONArray pic = detail.getJSONArray("pics");
 						for (int i = 0; i < pic.length(); i++) {
 							JSONObject isiPIC = pic.getJSONObject(i);
@@ -150,6 +160,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 						listView.setAdapter(null);
 						adapter = new ListAdapterDetailJobDailyTS(DetailJobDailyTs.this, list);
 						listView.setAdapter(adapter);
+						WrapContentListView.setListViewHeightBasedOnChildren(listView);
 					} else {
 						Toast.makeText(DetailJobDailyTs.this, message, Toast.LENGTH_LONG).show();
 					}
