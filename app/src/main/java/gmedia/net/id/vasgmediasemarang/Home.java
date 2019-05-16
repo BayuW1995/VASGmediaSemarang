@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import gmedia.net.id.vasgmediasemarang.menu_job_daily_cr.JobDailyCR;
 import gmedia.net.id.vasgmediasemarang.menu_job_daily_vas.JobDailyVAS;
 import gmedia.net.id.vasgmediasemarang.menu_job_daily_ts.JobDailyTS;
 import gmedia.net.id.vasgmediasemarang.utils.SessionManager;
@@ -17,7 +18,7 @@ import gmedia.net.id.vasgmediasemarang.utils.SessionManager;
 public class Home extends Fragment {
 	private Context context;
 	private View view;
-	private LinearLayout menuDailyJoblist, menuVisitMaintenance, menuJobDailyTS;
+	private LinearLayout menuDailyJoblist, menuJobDailyTS, menuJobDailyCR;
 	private TextView nama, nip;
 	private SessionManager session;
 
@@ -35,8 +36,8 @@ public class Home extends Fragment {
 		nama = (TextView) view.findViewById(R.id.namaProfile);
 		nip = (TextView) view.findViewById(R.id.nipProfile);
 		menuDailyJoblist = (LinearLayout) view.findViewById(R.id.menuDailyJoblist);
-//		menuVisitMaintenance = (LinearLayout) view.findViewById(R.id.menuVisitMaintenance);
 		menuJobDailyTS = (LinearLayout) view.findViewById(R.id.menuJobDailyTS);
+		menuJobDailyCR = (LinearLayout) view.findViewById(R.id.menuJobDailyCR);
 	}
 
 	private void initAction() {
@@ -50,20 +51,19 @@ public class Home extends Fragment {
 				startActivity(intent);
 			}
 		});
-		/*menuVisitMaintenance.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				MainActivity.posisi = false;
-				Intent intent = new Intent(context, PilihKostumer.class);
-				intent.putExtra("home", "menu maintenance");
-				startActivity(intent);
-			}
-		});*/
 		menuJobDailyTS.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				MainActivity.posisi = false;
 				Intent intent = new Intent(context, JobDailyTS.class);
+				startActivity(intent);
+			}
+		});
+		menuJobDailyCR.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				MainActivity.posisi = false;
+				Intent intent = new Intent(context, JobDailyCR.class);
 				startActivity(intent);
 			}
 		});

@@ -99,14 +99,18 @@ public class JobDailyVAS extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_daily_joblist);
+
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setTitle("Job Daily VAS");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setElevation(0);
+
 		session = new SessionManager(JobDailyVAS.this);
 		proses = new Proses(this);
+
 		initUI();
 		initAction();
+
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			tanggal = bundle.getString("tanggalLama");
@@ -253,7 +257,7 @@ public class JobDailyVAS extends AppCompatActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		ApiVolley request = new ApiVolley(JobDailyVAS.this, jBody, "POST", LinkURL.UrlPublishJadwal, "", "", 0, new ApiVolley.VolleyCallback() {
+		ApiVolley request = new ApiVolley(JobDailyVAS.this, jBody, "POST", LinkURL.UrlPublishJadwalVAS, "", "", 0, new ApiVolley.VolleyCallback() {
 			@Override
 			public void onSuccess(String result) {
 				proses.DismissDialog();

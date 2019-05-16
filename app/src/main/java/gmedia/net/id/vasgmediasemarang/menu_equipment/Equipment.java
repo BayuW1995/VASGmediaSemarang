@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,7 +110,9 @@ public class Equipment extends AppCompatActivity {
 	private int booleanLayak = -1;
 	private SessionManager session;
 	private RequestQueue requestQueue;
-	private String idUploadGambarSelfie = "", idList = "", customerID = "";
+	private String idUploadGambarSelfie = "";
+	public static String idUploadTTD = "";
+	private String idList = "", customerID = "";
 	private Spinner dropdownPIC;
 	private List<MasterModelPIC> masterPIC;
 	private ArrayAdapter<MasterModelPIC> adapterPIC;
@@ -121,7 +125,7 @@ public class Equipment extends AppCompatActivity {
 	private RadioButton radioButtonLayak, radioButtonBlmLayak;
 	private String status_layanan = "", note = "", pic_selfie = "", pic_ttd = "", selected_pic_by_id = "";
 	private boolean jBodyIsNull = true;
-	private JSONObject jBody;
+	private JSONObject jBody, jBodySementara;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -192,10 +196,10 @@ public class Equipment extends AppCompatActivity {
 				selectedId = btnRadio.getCheckedRadioButtonId();
 				radioButton = (RadioButton) findViewById(selectedId);
 				String isiboolean = radioButton.getText().toString();
-				if (isiboolean.equals("Layak")) {
-					booleanLayak = 0;
-				} else {
+				if (isiboolean.equals("Sudah Sesuai")) {
 					booleanLayak = 1;
+				} else if (isiboolean.equals("Belum Sesuai")){
+					booleanLayak = 0;
 				}
 			}
 		});
@@ -206,7 +210,7 @@ public class Equipment extends AppCompatActivity {
 					jBody = new JSONObject();
 					try {
 						jBody.put("id_header", id_header);
-						jBody.put("id_gambar_ttd", Signature.idUploadGambarTTD);
+						jBody.put("id_gambar_ttd", idUploadTTD);
 						jBody.put("id_gambar_selfi", idUploadGambarSelfie);
 						jBody.put("status_layanan", String.valueOf(booleanLayak));//radio button siap blm siap
 //			jBody.put("id_gambar_selfi", "1");
@@ -259,7 +263,7 @@ public class Equipment extends AppCompatActivity {
 								Toast.makeText(Equipment.this, "Silahkan pilih PIC terlebih dahulu", Toast.LENGTH_SHORT).show();
 							} else if (idUploadGambarSelfie.equals("")) {
 								Toast.makeText(Equipment.this, "Silahkan upload selfie terlebih dahulu", Toast.LENGTH_SHORT).show();
-							} else if (Signature.idUploadGambarTTD.equals("")) {
+							} else if (idUploadTTD.equals("")) {
 								Toast.makeText(Equipment.this, "Silahkan upload tanda tangan terlebih dahulu", Toast.LENGTH_SHORT).show();
 							} else {
 								prepareDataReportEquipment();
@@ -347,6 +351,8 @@ public class Equipment extends AppCompatActivity {
 						isReport = header.getString("is_report");
 						status_layanan = header.getString("status_layanan");
 						note = header.getString("note");
+						String idSelfie = header.getString("id_gambar_selfi");
+						String idTTD = header.getString("id_gambar_ttd");
 						pic_selfie = header.getString("pic_selfi_image");
 						pic_ttd = header.getString("pic_ttd_image");
 						selected_pic_by_id = header.getString("pic_id");
@@ -397,6 +403,12 @@ public class Equipment extends AppCompatActivity {
 						}
 						if (!note.equals("")) {
 							isian.setText(note);
+						}
+						if (!idSelfie.equals("0")) {
+							idUploadGambarSelfie = idSelfie;
+						}
+						if (!idTTD.equals("0")) {
+							idUploadTTD = idTTD;
 						}
 						if (!pic_selfie.equals("")) {
 							Picasso.with(Equipment.this).load(pic_selfie).into(imgSelfie);
@@ -600,7 +612,7 @@ public class Equipment extends AppCompatActivity {
 							}
 						};*/
 
-					} else if (status.equals("404")){
+					} else if (status.equals("404")) {
 						Toast.makeText(Equipment.this, message, Toast.LENGTH_SHORT).show();
 						masterPIC.add(new MasterModelPIC(
 								"1",
@@ -689,7 +701,7 @@ public class Equipment extends AppCompatActivity {
 
 							}
 						});
-					}else {
+					} else {
 						Toast.makeText(Equipment.this, message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
@@ -1039,14 +1051,110 @@ public class Equipment extends AppCompatActivity {
 		}
 		return rvData;
 	}*/
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
-				return true;
+				break;
+			case R.id.action_settings:
+				prepareDataSimpanSementara();
+				break;
 		}
-		return super.onOptionsItemSelected(item);
+		return true;
 	}
+
+	private void prepareDataSimpanSementara() {
+		proses.ShowDialog();
+		jBodySementara = new JSONObject();
+		try {
+			jBodySementara.put("id_header", id_header);
+			jBodySementara.put("id_gambar_ttd", idUploadTTD);
+			jBodySementara.put("id_gambar_selfi", idUploadGambarSelfie);
+			jBodySementara.put("status_layanan", String.valueOf(booleanLayak));//radio button siap blm siap
+//			jBody.put("id_gambar_selfi", "1");
+//			jBody.put("id_gambar_ttd", "1");
+//			jBody.put("status_layanan", "1");
+			if (isian.getText().toString().equals("")) {
+				jBodySementara.put("note", "");
+			} else {
+				jBodySementara.put("note", isian.getText().toString());
+			}
+			MasterModelPIC modelPIC = (MasterModelPIC) dropdownPIC.getSelectedItem();
+			idPIC = modelPIC.getId();
+			jBodySementara.put("id_pic", idPIC);
+			ArrayList<JSONObject> jsonArray = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {//7
+				ModelListEquipment modelParent = list.get(i);
+				for (int j = 0; j < modelParent.getList().size(); j++) {
+					ModelListEquipmentChild modelChild = modelParent.getList().get(j);
+					String tipe = modelChild.getTipe();
+					JSONObject object = new JSONObject();
+					if (tipe.equals("radio")) {
+						object.put("id", modelChild.getId());
+						object.put("value_radio", modelChild.getRadio1());
+						object.put("note", modelChild.getIsian());
+						jsonArray.add(object);
+					} else if (tipe.equals("text")) {
+						object.put("id", modelChild.getId());
+						object.put("value_text", modelChild.getNoteTeks1());
+						object.put("note", modelChild.getIsian());
+						jsonArray.add(object);
+					}
+				}
+			}
+			jBodySementara.put("form_items", new JSONArray(jsonArray));
+			prepareSimpanSementara();
+			/*if (!jBodyIsNull) {
+				if (booleanLayak == -1) {
+					Toast.makeText(Equipment.this, "Silahkan Isi Kelayakan Layanan Terlebih Dahulu", Toast.LENGTH_SHORT).show();
+				} else if (idPIC.equals("0")) {
+					Toast.makeText(Equipment.this, "Silahkan pilih PIC terlebih dahulu", Toast.LENGTH_SHORT).show();
+				} else if (idUploadGambarSelfie.equals("")) {
+					Toast.makeText(Equipment.this, "Silahkan upload selfie terlebih dahulu", Toast.LENGTH_SHORT).show();
+				} else if (Signature.idUploadGambarTTD.equals("")) {
+					Toast.makeText(Equipment.this, "Silahkan upload tanda tangan terlebih dahulu", Toast.LENGTH_SHORT).show();
+				} else {
+					prepareDataReportEquipment();
+				}
+			}*/
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void prepareSimpanSementara() {
+		ApiVolley request = new ApiVolley(Equipment.this, jBodySementara, "POST", LinkURL.UrlReportSementaraEquipment, "", "", 0, new ApiVolley.VolleyCallback() {
+			@Override
+			public void onSuccess(String result) {
+				proses.DismissDialog();
+				try {
+					JSONObject object = new JSONObject(result);
+					String status = object.getJSONObject("metadata").getString("status");
+					String message = object.getJSONObject("metadata").getString("message");
+					if (status.equals("200")) {
+						Toast.makeText(Equipment.this, message, Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(Equipment.this, message, Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onError(String result) {
+				proses.DismissDialog();
+				Toast.makeText(Equipment.this, "terjadi kesalahan", Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+
 }

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import gmedia.net.id.vasgmediasemarang.R;
+import gmedia.net.id.vasgmediasemarang.menu_job_daily_cr.JobDailyCR;
 import gmedia.net.id.vasgmediasemarang.menu_job_daily_vas.JobDailyVAS;
 import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
@@ -134,8 +134,105 @@ public class ListAdapterPilihKostumer extends ArrayAdapter {
 								prepareTambahDataPilihKostumer();
 							} else if (PilihKostumer.isEdit) {
 								prepareEditDataPilihKostumer();
+							} else if (PilihKostumer.isTambahCR) {
+								prepareTambahDataPilihKostumerCR();
+							} else if (PilihKostumer.isEditCR) {
+								prepareEditDataPilihKostumerCR();
 							}
 						}
+					}
+
+					private void prepareEditDataPilihKostumerCR() {
+						proses.ShowDialog();
+						JSONObject jBody = new JSONObject();
+						try {
+							jBody.put("id", id);
+							jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
+							jBody.put("service_id", modelListPilihKostumer.getService_id());
+							jBody.put("time", txtTime.getText().toString());
+							if (!isianKeterangan.getText().toString().equals("")) {
+								jBody.put("note", isianKeterangan.getText().toString());
+							}
+
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						ApiVolley request = new ApiVolley(context, jBody, "POST", LinkURL.UrlEditJadwalCR, "", "", 0, new ApiVolley.VolleyCallback() {
+							@Override
+							public void onSuccess(String result) {
+								proses.DismissDialog();
+								try {
+									JSONObject object = new JSONObject(result);
+									String status = object.getJSONObject("metadata").getString("status");
+									String message = object.getJSONObject("metadata").getString("message");
+									if (status.equals("200")) {
+										Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+										Intent intent = new Intent(context, JobDailyCR.class);
+										intent.putExtra("tanggalLama", tanggal);
+										intent.addCategory(Intent.CATEGORY_HOME);
+										intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+										((Activity) context).startActivity(intent);
+										((Activity) context).finish();
+									} else {
+										Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+									}
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}
+
+							@Override
+							public void onError(String result) {
+								proses.DismissDialog();
+								Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_LONG).show();
+							}
+						});
+					}
+
+					private void prepareTambahDataPilihKostumerCR() {
+						proses.ShowDialog();
+						JSONObject jBody = new JSONObject();
+						try {
+							jBody.put("date", tanggal);
+							jBody.put("customer_id", modelListPilihKostumer.getCustomer_id());
+							jBody.put("service_id", modelListPilihKostumer.getService_id());
+							jBody.put("time", txtTime.getText().toString());
+							if (!isianKeterangan.getText().toString().equals("")) {
+								jBody.put("note", isianKeterangan.getText().toString());
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						ApiVolley request = new ApiVolley(context, jBody, "POST", LinkURL.UrlTambahJadwalCR, "", "", 0, new ApiVolley.VolleyCallback() {
+							@Override
+							public void onSuccess(String result) {
+								proses.DismissDialog();
+								try {
+									JSONObject object = new JSONObject(result);
+									String status = object.getJSONObject("metadata").getString("status");
+									String message = object.getJSONObject("metadata").getString("message");
+									if (status.equals("200")) {
+										Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+										Intent intent = new Intent(context, JobDailyCR.class);
+										intent.putExtra("tanggalLama", tanggal);
+										intent.addCategory(Intent.CATEGORY_HOME);
+										intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+										((Activity) context).startActivity(intent);
+										((Activity) context).finish();
+									} else {
+										Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+									}
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}
+
+							@Override
+							public void onError(String result) {
+								proses.DismissDialog();
+								Toast.makeText(context, "Terjadi Kesalahan", Toast.LENGTH_LONG).show();
+							}
+						});
 					}
 
 					private void prepareTambahDataPilihKostumer() {

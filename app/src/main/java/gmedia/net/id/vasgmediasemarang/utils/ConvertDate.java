@@ -6,17 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ConvertDate {
-    public static String convert(String fromFormatDate, String toFormatDate, String inputan) {
-        DateFormat inputFormat = new SimpleDateFormat(fromFormatDate);
-        DateFormat outputFormat = new SimpleDateFormat(toFormatDate);
+	private static Date date = null;
+
+	public static String convert(String fromFormatDate, String toFormatDate, String inputan) {
+		DateFormat inputFormat = new SimpleDateFormat(fromFormatDate);
+		DateFormat outputFormat = new SimpleDateFormat(toFormatDate);
 //        String inputDateStr = inputan;
-        Date date = null;
-        try {
-            date = inputFormat.parse(inputan);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String outputDateStr = outputFormat.format(date);
-        return outputDateStr;
-    }
+
+		try {
+			date = inputFormat.parse(inputan);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String outputDateStr = outputFormat.format(date);
+		return outputDateStr;
+	}
 }

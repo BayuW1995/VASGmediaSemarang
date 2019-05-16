@@ -22,6 +22,7 @@ import gmedia.net.id.vasgmediasemarang.menu_detail_job_daily_ts.DetailJobDailyTs
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 	private GoogleMap mMap;
+	private String latitude = "", longitude = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 			window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 			window.setStatusBarColor(getResources().getColor(R.color.notifBarKuning));
+		}
+		Bundle bundle = getIntent().getExtras();
+		if (bundle != null) {
+			latitude = bundle.getString("latitude");
+			longitude = bundle.getString("longitude");
 		}
 		// Obtain the SupportMapFragment and get notified when the map is ready to be used.
 		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -58,7 +64,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 	public void onMapReady(GoogleMap googleMap) {
 		mMap = googleMap;
 		// Add a marker in Sydney and move the camera
-		LatLng sydney = new LatLng(Double.parseDouble(DetailJobDailyTs.latitude), Double.parseDouble(DetailJobDailyTs.longitude));
+		LatLng sydney = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
 		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 		float zoomLevel = 16.0f; //This goes up to 21

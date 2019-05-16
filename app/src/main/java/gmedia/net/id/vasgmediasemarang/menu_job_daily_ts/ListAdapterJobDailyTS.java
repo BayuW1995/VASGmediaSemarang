@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.firebase.jobdispatcher.Job;
+
 import java.util.List;
 
 import gmedia.net.id.vasgmediasemarang.R;
@@ -81,7 +83,9 @@ public class ListAdapterJobDailyTS extends ArrayAdapter {
 			public void onClick(View view) {
 				Intent intent = new Intent(context, DetailJobDailyTs.class);
 				intent.putExtra("id", model.getId());
-				intent.putExtra("statusSurvey",model.getStatus_survey());
+				intent.putExtra("statusSurvey", model.getStatus_survey());
+				intent.putExtra("flag_custom", model.getFlag_custom());
+				intent.putExtra("tanggal", JobDailyTS.tanggalJobDailyTS);
 				((Activity) context).startActivity(intent);
 			}
 		});

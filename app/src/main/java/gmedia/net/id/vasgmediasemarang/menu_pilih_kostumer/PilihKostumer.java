@@ -76,7 +76,9 @@ public class PilihKostumer extends AppCompatActivity {
 					"Gajamada Plaza Lt.2 B29 Simpang Lima"
 			};
 	public static boolean isTambah = false;
+	public static boolean isTambahCR = false;
 	public static boolean isEdit = false;
+	public static boolean isEditCR = false;
 	private Proses proses;
 	private int startIndex = 0;
 	private int count = 10;
@@ -101,9 +103,24 @@ public class PilihKostumer extends AppCompatActivity {
 				id = bundle.getString("ID");
 				isEdit = true;
 				isTambah = false;
+				isEditCR = false;
+				isTambahCR = false;
 			} else if (kiriman.equals("tambah")) {
 				isTambah = true;
 				isEdit = false;
+				isTambahCR = false;
+				isEditCR = false;
+			} else if (kiriman.equals("tambahCR")) {
+				isTambahCR = true;
+				isTambah = false;
+				isEditCR = false;
+				isEdit = false;
+			} else if (kiriman.equals("editCR")) {
+				id = bundle.getString("ID");
+				isEditCR = true;
+				isEdit = false;
+				isTambahCR = false;
+				isTambah = false;
 			}
 		}
 		initUI();
@@ -208,7 +225,7 @@ public class PilihKostumer extends AppCompatActivity {
 							}
 						});
 					} else {
-						Toast.makeText(PilihKostumer.this, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(PilihKostumer.this, message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -218,7 +235,7 @@ public class PilihKostumer extends AppCompatActivity {
 			@Override
 			public void onError(String result) {
 				proses.DismissDialog();
-				Toast.makeText(PilihKostumer.this, "Terjadi Kesalahan", Toast.LENGTH_LONG).show();
+				Toast.makeText(PilihKostumer.this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -238,7 +255,7 @@ public class PilihKostumer extends AppCompatActivity {
 						JSONArray jsonArray = response.getJSONArray("customer_list");
 						for (int i = 0; i < jsonArray.length(); i++) {
 							JSONObject isi = jsonArray.getJSONObject(i);
-							listPilihKostumer.add(new ModelListPilihKostumer(
+							moreListPilihKostumer.add(new ModelListPilihKostumer(
 									isi.getString("customer_id"),
 									isi.getString("service_id"),
 									isi.getString("nama_site"),
@@ -249,7 +266,7 @@ public class PilihKostumer extends AppCompatActivity {
 						listView.removeFooterView(footerList);
 						if (adapter != null) adapter.addMoreData(moreListPilihKostumer);
 					} else {
-						Toast.makeText(PilihKostumer.this, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(PilihKostumer.this, message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

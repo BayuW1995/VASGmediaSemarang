@@ -69,9 +69,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="NAMAMU"
-                    android:textStyle="bold"
                     android:textColor="#1789c1"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/nipProfile"
@@ -104,6 +104,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5" />
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -114,8 +115,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="5">
 
@@ -144,52 +145,19 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
                                 android:text="Job Daily VAS" />
                         </RelativeLayout>
 
                     </LinearLayout>
                 </LinearLayout>
 
-                <!--<LinearLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <LinearLayout
-                        android:service_id="@+service_id/menuVisitMaintenance"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:background="@drawable/bcg_menu_home"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:weightSum="5">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:src="@drawable/icon_survey" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="Visit Maintenance" />
-                    </LinearLayout>
-                </LinearLayout>-->
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:gravity="left"
                     android:orientation="horizontal"
                     android:weightSum="5">
 
@@ -218,10 +186,51 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
                                 android:text="Job Daily TS" />
                         </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:id="@+id/menuJobDailyCR"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:background="@drawable/bcg_menu_home"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="5">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:src="@drawable/icon_daily_vas" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:text="Job Daily CR" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

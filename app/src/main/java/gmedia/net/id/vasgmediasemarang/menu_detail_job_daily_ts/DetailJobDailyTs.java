@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -57,11 +58,11 @@ public class DetailJobDailyTs extends AppCompatActivity {
 					"0852384243723"
 			};
 	private RelativeLayout btnReportSurvey;
-	public static String idJobDailyTS = "", latitude = "", longitude = "", statusSurvey = "";
+	public static String idJobDailyTS = "", statusSurvey = "";
 	private Proses proses;
 	private TextView tanggal, waktu, namaLokasi, alamat, jenis_project, note;
 	private LinearLayout btnMaps;
-	private String layanan_fo = "", layanan_wireless = "";
+	private String layanan_fo = "", layanan_wireless = "", flag_custom = "", tgl = "", latitude = "", longitude = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,8 @@ public class DetailJobDailyTs extends AppCompatActivity {
 		if (bundle != null) {
 			idJobDailyTS = bundle.getString("id");
 			statusSurvey = bundle.getString("statusSurvey");
+			flag_custom = bundle.getString("flag_custom");
+			tgl = bundle.getString("tanggal");
 		}
 		initUI();
 		initAction();
@@ -101,13 +104,17 @@ public class DetailJobDailyTs extends AppCompatActivity {
 	}
 
 	private void initAction() {
-		tanggal.setText(ConvertDate.convert("yyyy-MM-dd", "dd MMMM yyyy", JobDailyTS.tanggalJobDailyTS));
+		tanggal.setText(ConvertDate.convert("yyyy-MM-dd", "dd MMMM yyyy", tgl));
 		prepareDataJobDailyTS();
 		btnMaps.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(DetailJobDailyTs.this, MapsActivity.class);
-				startActivity(intent);
+				if (!latitude.equals("") && !longitude.equals("")) {
+					Intent intent = new Intent(DetailJobDailyTs.this, MapsActivity.class);
+					intent.putExtra("latitude", latitude);
+					intent.putExtra("longitude", longitude);
+					startActivity(intent);
+				}
 			}
 		});
 		btnReportSurvey.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +126,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 				intent.putExtra("id_job_daily_ts", idJobDailyTS);
 				intent.putExtra("jenis_project", jenis_project.getText().toString());
 				intent.putExtra("statusSurvey", statusSurvey);
+				intent.putExtra("flag_custom", flag_custom);
 				startActivity(intent);
 			}
 		});
@@ -126,10 +134,10 @@ public class DetailJobDailyTs extends AppCompatActivity {
 
 	private void prepareDataJobDailyTS() {
 		proses.ShowDialog();
-		ApiVolley request = new ApiVolley(DetailJobDailyTs.this, new JSONObject(), "GET", LinkURL.UrlDetailJobDailyTS + idJobDailyTS, "", "", 0, new ApiVolley.VolleyCallback() {
+		ApiVolley request = new ApiVolley(DetailJobDailyTs.this, new JSONObject(), "GET", LinkURL.UrlDetailJobDailyTS + idJobDailyTS + "/" + flag_custom, "", "", 0, new ApiVolley.VolleyCallback() {
 			@Override
 			public void onSuccess(String result) {
-				proses.DismissDialog();
+
 				list = new ArrayList<>();
 				try {
 					JSONObject object = new JSONObject(result);
@@ -144,7 +152,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 						namaLokasi.setText(detail.getString("lokasi"));
 						alamat.setText(detail.getString("alamat"));
 						jenis_project.setText(detail.getString("jenis_project"));
-						note.setText(detail.getString("note"));
+						note.setText(detail.getString("progress_note"));
 						latitude = detail.getString("latitude");
 						longitude = detail.getString("longitude");
 						layanan_fo = detail.getString("layanan_fo");
@@ -161,11 +169,13 @@ public class DetailJobDailyTs extends AppCompatActivity {
 						adapter = new ListAdapterDetailJobDailyTS(DetailJobDailyTs.this, list);
 						listView.setAdapter(adapter);
 						WrapContentListView.setListViewHeightBasedOnChildren(listView);
+						proses.DismissDialog();
 					} else {
 						Toast.makeText(DetailJobDailyTs.this, message, Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
+					Log.d("erroywoy", e.getMessage());
 				}
 			}
 

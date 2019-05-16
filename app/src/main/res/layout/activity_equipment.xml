@@ -179,7 +179,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dengan ini menyatakan bahwa layanan"
+                    android:text="Dengan ini menyatakan bahwa jaringan internet"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -198,7 +198,7 @@
                             android:id="@+id/radioButtonLayak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Layak"
+                            android:text="Sudah Sesuai"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -208,7 +208,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="40dp"
-                            android:text="Belum Layak"
+                            android:text="Belum Sesuai"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />

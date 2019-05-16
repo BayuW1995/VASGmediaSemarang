@@ -219,7 +219,7 @@ public class Signature extends AppCompatActivity {
 
 	private void uploadBitmap(final byte[] bitmap) {
 		proses.ShowDialog();
-		idUploadGambarTTD = "";
+		Equipment.idUploadTTD = "";
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("Client-Service", "Gmedia_SUPPORTVAS");
 		headers.put("Auth-Key", "frontend_client");
@@ -238,7 +238,7 @@ public class Signature extends AppCompatActivity {
 					String message = object.getJSONObject("metadata").getString("message");
 					if (status.equals("200")) {
 						JSONObject responseAPI = object.getJSONObject("response");
-						idUploadGambarTTD = responseAPI.getString("id");
+						Equipment.idUploadTTD = responseAPI.getString("id");
 						Toast.makeText(Signature.this, message, Toast.LENGTH_SHORT).show();
 						Equipment.signatureIsDone = true;
 						onBackPressed();

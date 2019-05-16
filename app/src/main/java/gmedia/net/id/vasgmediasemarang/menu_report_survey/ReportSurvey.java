@@ -50,7 +50,7 @@ public class ReportSurvey extends AppCompatActivity {
 	private LinearLayout btnKirim, layoutFO, layoutWireless;
 	private String layanan_fo = "", layanan_wireless = "", idJobDailyTS = "",
 			jenis_job = "", resultProject = "", resultFO = "", resultWireless = "",
-			kondisi = "", statusSurvey = "";
+			kondisi = "", statusSurvey = "",flag_custom="";
 	private int selectedIdProject = -1, selectedIDFO = -1, selectedIDWireless = -1;
 	private RadioButton radioButtonProject, radioButtonFO, radioButtonWireless;
 	private RadioGroup radioGroupProject, radioGroupFO, radioGroupWireless;
@@ -80,6 +80,7 @@ public class ReportSurvey extends AppCompatActivity {
 			idJobDailyTS = bundle.getString("id_job_daily_ts");
 			jenis_job = bundle.getString("jenis_project");
 			statusSurvey = bundle.getString("statusSurvey");
+			flag_custom=bundle.getString("flag_custom");
 			Log.d("jenis", jenis_job);
 		}
 		initUI();
@@ -229,6 +230,7 @@ public class ReportSurvey extends AppCompatActivity {
 					jBody.put("status_job", resultProject);
 					jBody.put("coverage_wireless", resultWireless);
 					jBody.put("coverage_fo", resultFO);
+					jBody.put("falg_custom",flag_custom);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

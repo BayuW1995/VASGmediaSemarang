@@ -45,9 +45,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Master VAS APP\design baru\icon baru\icon_search.png" />
-                                      <entry key="outputName" value="icon_search" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="imageAsset" value="E:\Master VAS APP\aset\icon_panah.png" />
+                                      <entry key="outputName" value="icon_panah-hitam" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="707070" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -88,9 +89,7 @@
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
                                       <entry key="foregroundImage" value="E:\Master VAS APP\icon_app.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="legacyIconShape" value="NONE" />
                                       <entry key="outputName" value="icon_launcher" />
-                                      <entry key="webIconShape" value="NONE" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -156,6 +155,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
