@@ -435,7 +435,6 @@ public class Equipment extends AppCompatActivity {
 							}
 						});
 						recView.addOnScrollListener(load);*/
-
 						/*recView.setOnScrollListener(new AbsListView.OnScrollListener() {
 							@Override
 							public void onScrollStateChanged(AbsListView absListView, int i) {

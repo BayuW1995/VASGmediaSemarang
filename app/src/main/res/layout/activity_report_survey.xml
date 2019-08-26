@@ -46,11 +46,13 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/radioButtonDoneProject"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Done" />
 
                         <RadioButton
+                            android:id="@+id/radioButtonUndoneProject"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -87,11 +89,13 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/radioButtonCoverFo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cover" />
 
                         <RadioButton
+                            android:id="@+id/radioButtonUncoverFo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -128,11 +132,13 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/radioButtonCoverWireless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cover" />
 
                         <RadioButton
+                            android:id="@+id/radioButtonUncoverWireless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -156,6 +162,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/edtNoteReportSurveyTS"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp" />

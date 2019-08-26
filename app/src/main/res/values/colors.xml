@@ -7,4 +7,5 @@
     <color name="notifBarKuning">#e98706</color>
     <color name="layoutKuning">#FFF79436</color>
     <color name="layoutBiru">#02b9ff</color>
+    <color name="black">#000000</color>
 </resources>

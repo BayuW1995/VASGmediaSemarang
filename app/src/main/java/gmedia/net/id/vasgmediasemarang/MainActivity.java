@@ -66,18 +66,18 @@ public class MainActivity extends RuntimePermissionsActivity
 	private Integer imageMenu[] =
 			{
 					R.drawable.icon_menu_home_menu_drawer,
-					R.drawable.icon_daily_job_menu_drawer,
+					//R.drawable.icon_daily_job_menu_drawer,
 //					R.drawable.icon_history_survei_menu_drawer,
-					R.drawable.icon_daily_job_menu_drawer,
+					//R.drawable.icon_daily_job_menu_drawer,
 //					R.drawable.icon_history_survei_menu_drawer,
 					R.drawable.icon_logout_menu_drawer
 			};
 	private String teksMenu[] =
 			{
 					"Home",
-					"Daily Job Vas",
+					//"Daily Job Vas",
 //					"History Survei VAS",
-					"Daily Job TS",
+					//"Daily Job TS",
 //					"History Survei TS",
 					"Logout"
 			};
@@ -246,11 +246,11 @@ public class MainActivity extends RuntimePermissionsActivity
 						finish();
 						drawer.closeDrawer(GravityCompat.START);
 						break;
-					case 1:
+					/*case 1:
 						Intent intentJobDailyVas = new Intent(MainActivity.this, JobDailyVAS.class);
 						startActivity(intentJobDailyVas);
 						drawer.closeDrawer(GravityCompat.START);
-						break;
+						break;*/
 					/*case 2:
 						Intent intentHistoryVAS = new Intent(MainActivity.this, HistoryVAS.class);
 						*//*intentHistoryVAS.addCategory(Intent.CATEGORY_HOME);
@@ -258,11 +258,11 @@ public class MainActivity extends RuntimePermissionsActivity
 						startActivity(intentHistoryVAS);
 						drawer.closeDrawer(GravityCompat.START);
 						break;*/
-					case 2:
+					/*case 2:
 						Intent intentJobDailyTS = new Intent(MainActivity.this, JobDailyTS.class);
 						startActivity(intentJobDailyTS);
 						drawer.closeDrawer(GravityCompat.START);
-						break;
+						break;*/
 					/*case 4:
 						Intent intentHistoryTS = new Intent(MainActivity.this, HistoryTS.class);
 						*//*intentHistoryTS.addCategory(Intent.CATEGORY_HOME);
@@ -270,7 +270,7 @@ public class MainActivity extends RuntimePermissionsActivity
 						startActivity(intentHistoryTS);
 						drawer.closeDrawer(GravityCompat.START);
 						break;*/
-					case 3:
+					case 1:
 						session.logoutUser();
 						drawer.closeDrawer(GravityCompat.START);
 						break;

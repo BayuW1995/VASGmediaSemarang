@@ -178,7 +178,8 @@ public class JobDailyTS extends AppCompatActivity {
 									isi.getString("alamat"),
 									isi.getString("jenis_project"),
 									isi.getString("survey_lastmile"),
-									isi.getString("flag_custom")
+									isi.getString("flag_custom"),
+									isi.getString("update_progress")
 							));
 						}
 						listView.setAdapter(null);

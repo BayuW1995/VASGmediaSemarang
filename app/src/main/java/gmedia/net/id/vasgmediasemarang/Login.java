@@ -9,8 +9,12 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
@@ -81,7 +85,16 @@ public class Login extends AppCompatActivity {
 						String userId = object.getJSONObject("response").getString("nip");
 						String nama = object.getJSONObject("response").getString("nama");
 						String token = object.getJSONObject("response").getString("token");
-						session.createLoginSession(userId, nama, token);
+						JSONArray jMenus = object.getJSONObject("response").getJSONArray("menus");
+
+						Set<String> listMenu = new HashSet<String>();
+						listMenu.clear();
+						for(int i = 0; i < jMenus.length(); i++){
+
+							String dataMenu = jMenus.getString(i);
+							listMenu.add(dataMenu);
+						}
+						session.createLoginSession(userId, nama, token, listMenu);
 						Intent intent = new Intent(Login.this, MainActivity.class);
 						startActivity(intent);
 						finish();

@@ -22,7 +22,8 @@ import gmedia.net.id.vasgmediasemarang.menu_detail_job_daily_ts.DetailJobDailyTs
 public class ListAdapterJobDailyTS extends ArrayAdapter {
 	private Context context;
 	private List<ModelListJobDailyTS> list;
-	private Boolean check;
+	private String update_progres = "";
+//	private Boolean check;
 
 	public ListAdapterJobDailyTS(Context context, List<ModelListJobDailyTS> list) {
 		super(context, R.layout.view_lv_job_daily_ts, list);
@@ -66,7 +67,18 @@ public class ListAdapterJobDailyTS extends ArrayAdapter {
 		}
 		final ModelListJobDailyTS model = list.get(position);
 		final ViewHolder finalHolder = holder;
-		holder.imgCheck.setBackgroundResource(R.drawable.icon_uncheck_job_daily_ts);
+//		holder.imgCheck.setBackgroundResource(R.drawable.icon_uncheck_job_daily_ts);
+		update_progres = model.getUpdate_progress();
+		if (update_progres.equals("sudah")) {
+			finalHolder.imgCheck.setBackgroundResource(R.drawable.icon_check_job_daily_ts);
+			finalHolder.garisCheck.setVisibility(View.VISIBLE);
+			finalHolder.garisUnCheck.setVisibility(View.GONE);
+
+		} else if (update_progres.equals("belum")) {
+			finalHolder.imgCheck.setBackgroundResource(R.drawable.icon_uncheck_job_daily_ts);
+			finalHolder.garisCheck.setVisibility(View.GONE);
+			finalHolder.garisUnCheck.setVisibility(View.VISIBLE);
+		}
 //		check = model.getCheck();
 		/*if (check) {
 			finalHolder.imgCheck.setBackgroundResource(R.drawable.icon_check_job_daily_ts);

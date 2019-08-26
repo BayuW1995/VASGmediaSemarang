@@ -104,134 +104,119 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:weightSum="3">
 
                 <LinearLayout
+                    android:id="@+id/menuDailyJoblist"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/bcg_menu_home"
+                    android:clickable="true"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:padding="@dimen/menu_padding"
+                    android:layout_marginLeft="@dimen/menu_width"
+                    android:layout_marginRight="@dimen/menu_width"
+                    android:orientation="vertical"
                     android:weightSum="5">
 
-                    <LinearLayout
-                        android:id="@+id/menuDailyJoblist"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:background="@drawable/bcg_menu_home"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:weightSum="5">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3.5"
+                        android:src="@drawable/icon_daily_vas" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:src="@drawable/icon_daily_vas" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:text="Job Daily VAS" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:text="Job Daily VAS" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/menuJobDailyTS"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/bcg_menu_home"
+                    android:clickable="true"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:padding="@dimen/menu_padding"
+                    android:layout_marginLeft="@dimen/menu_width"
+                    android:layout_marginRight="@dimen/menu_width"
+                    android:orientation="vertical"
                     android:weightSum="5">
 
-                    <LinearLayout
-                        android:id="@+id/menuJobDailyTS"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:background="@drawable/bcg_menu_home"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:weightSum="5">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3.5"
+                        android:src="@drawable/icon_daily_job_ts" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:src="@drawable/icon_daily_job_ts" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:text="Job Daily TS" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:text="Job Daily TS" />
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/menuJobDailyCR"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/bcg_menu_home"
+                    android:clickable="true"
                     android:gravity="center"
-                    android:orientation="horizontal"
+                    android:padding="@dimen/menu_padding"
+                    android:layout_marginLeft="@dimen/menu_width"
+                    android:layout_marginRight="@dimen/menu_width"
+                    android:orientation="vertical"
                     android:weightSum="5">
 
-                    <LinearLayout
-                        android:id="@+id/menuJobDailyCR"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:background="@drawable/bcg_menu_home"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:weightSum="5">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3.5"
+                        android:src="@drawable/icon_daily_vas" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:src="@drawable/icon_daily_vas" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:text="Job Daily CR" />
+                    </RelativeLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:text="Job Daily CR" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -50,12 +51,15 @@ public class ReportSurvey extends AppCompatActivity {
 	private LinearLayout btnKirim, layoutFO, layoutWireless;
 	private String layanan_fo = "", layanan_wireless = "", idJobDailyTS = "",
 			jenis_job = "", resultProject = "", resultFO = "", resultWireless = "",
-			kondisi = "", statusSurvey = "",flag_custom="";
+			kondisi = "", statusSurvey = "", flag_custom = "", update_progress = "", note = "";
 	private int selectedIdProject = -1, selectedIDFO = -1, selectedIDWireless = -1;
 	private RadioButton radioButtonProject, radioButtonFO, radioButtonWireless;
 	private RadioGroup radioGroupProject, radioGroupFO, radioGroupWireless;
 	private Boolean project = false, fo = false, wireless = false;
 	private Proses proses;
+	private RadioButton radioButtonDoneProject, radioButtonUndoneProject, radioButtonCoverFo,
+			radioButtonUncoverFo, radioButtonCoverWireless, radioButtonUncoverWireless;
+	private EditText noteReportSurvey;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +84,10 @@ public class ReportSurvey extends AppCompatActivity {
 			idJobDailyTS = bundle.getString("id_job_daily_ts");
 			jenis_job = bundle.getString("jenis_project");
 			statusSurvey = bundle.getString("statusSurvey");
-			flag_custom=bundle.getString("flag_custom");
-			Log.d("jenis", jenis_job);
+			flag_custom = bundle.getString("flag_custom");
+			update_progress = bundle.getString("update_progres");
+			note = bundle.getString("note");
+			Log.d("note", note);
 		}
 		initUI();
 		initAction();
@@ -95,6 +101,13 @@ public class ReportSurvey extends AppCompatActivity {
 		radioGroupProject = (RadioGroup) findViewById(R.id.radioGrupProject);
 		radioGroupFO = (RadioGroup) findViewById(R.id.radioGrupFO);
 		radioGroupWireless = (RadioGroup) findViewById(R.id.radioGrupWireless);
+		radioButtonDoneProject = (RadioButton) findViewById(R.id.radioButtonDoneProject);
+		radioButtonUndoneProject = (RadioButton) findViewById(R.id.radioButtonUndoneProject);
+		radioButtonCoverFo = (RadioButton) findViewById(R.id.radioButtonCoverFo);
+		radioButtonUncoverFo = (RadioButton) findViewById(R.id.radioButtonUncoverFo);
+		radioButtonCoverWireless = (RadioButton) findViewById(R.id.radioButtonCoverWireless);
+		radioButtonUncoverWireless = (RadioButton) findViewById(R.id.radioButtonUncoverWireless);
+		noteReportSurvey = (EditText) findViewById(R.id.edtNoteReportSurveyTS);
 	}
 
 	private void initAction() {
@@ -107,20 +120,62 @@ public class ReportSurvey extends AppCompatActivity {
 			if (!layanan_fo.equals("") && !layanan_wireless.equals("")) {
 				layoutFO.setVisibility(View.VISIBLE);
 				layoutWireless.setVisibility(View.VISIBLE);
+				if (update_progress.equals("sudah")) {
+					radioButtonDoneProject.setChecked(true);
+					radioButtonUndoneProject.setChecked(false);
+				} else if (update_progress.equals("belum")) {
+					radioButtonUndoneProject.setChecked(true);
+					radioButtonDoneProject.setChecked(false);
+				}
+				if (layanan_fo.equals("cover")) {
+					radioButtonCoverFo.setChecked(true);
+					radioButtonUncoverFo.setChecked(false);
+				} else if (layanan_fo.equals("uncover")) {
+					radioButtonUncoverFo.setChecked(true);
+					radioButtonCoverFo.setChecked(false);
+				}
+				if (layanan_wireless.equals("cover")) {
+					radioButtonCoverWireless.setChecked(true);
+					radioButtonUncoverWireless.setChecked(false);
+				} else if (layanan_wireless.equals("uncover")) {
+					radioButtonUncoverWireless.setChecked(true);
+					radioButtonCoverWireless.setChecked(false);
+				}
 				kondisi = "semua";
 				project = true;
 				fo = true;
 				wireless = true;
 			} else {
+				if (update_progress.equals("sudah")) {
+					radioButtonDoneProject.setChecked(true);
+					radioButtonUndoneProject.setChecked(false);
+				} else if (update_progress.equals("belum")) {
+					radioButtonUndoneProject.setChecked(true);
+					radioButtonDoneProject.setChecked(false);
+				}
 				if (!layanan_fo.equals("")) {
 					layoutFO.setVisibility(View.VISIBLE);
 					kondisi = "fo";
+					if (layanan_fo.equals("cover")) {
+						radioButtonCoverFo.setChecked(true);
+						radioButtonUncoverFo.setChecked(false);
+					} else if (layanan_fo.equals("uncover")) {
+						radioButtonUncoverFo.setChecked(true);
+						radioButtonCoverFo.setChecked(false);
+					}
 					project = true;
 					fo = true;
 					wireless = false;
 				} else if (!layanan_wireless.equals("")) {
 					layoutWireless.setVisibility(View.VISIBLE);
 					kondisi = "wireless";
+					if (layanan_wireless.equals("cover")) {
+						radioButtonCoverWireless.setChecked(true);
+						radioButtonUncoverWireless.setChecked(false);
+					} else if (layanan_wireless.equals("uncover")) {
+						radioButtonUncoverWireless.setChecked(true);
+						radioButtonCoverWireless.setChecked(false);
+					}
 					project = true;
 					wireless = true;
 					fo = false;
@@ -136,9 +191,19 @@ public class ReportSurvey extends AppCompatActivity {
 			layoutFO.setVisibility(View.GONE);
 			layoutWireless.setVisibility(View.GONE);
 			kondisi = "kosong";
+			if (update_progress.equals("sudah")) {
+				radioButtonDoneProject.setChecked(true);
+				radioButtonUndoneProject.setChecked(false);
+			} else if (update_progress.equals("belum")) {
+				radioButtonUndoneProject.setChecked(true);
+				radioButtonDoneProject.setChecked(false);
+			}
 			project = true;
 			fo = false;
 			wireless = false;
+		}
+		if (!note.equals("")) {
+			noteReportSurvey.setText(note);
 		}
 		radioGroupProject.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
@@ -162,6 +227,7 @@ public class ReportSurvey extends AppCompatActivity {
 				} else {
 					resultFO = "uncover";
 				}
+				Log.d("resultFo",resultFO);
 			}
 		});
 		radioGroupWireless.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -179,32 +245,36 @@ public class ReportSurvey extends AppCompatActivity {
 		btnKirim.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if (project && fo && wireless) {
-					if (!resultProject.equals("") && !resultFO.equals("") && !resultWireless.equals("")) {
-						popUpReportSurvey();
-					} else {
-						Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
-					}
-				} else if (project && fo) {
-					if (!resultProject.equals("") && !resultFO.equals("")) {
-						popUpReportSurvey();
-					} else {
-						Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
-					}
-				} else if (project && wireless) {
-					if (!resultProject.equals("") && !resultWireless.equals("")) {
-						popUpReportSurvey();
-					} else {
-						Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
-					}
-				} else if (project) {
-					if (!resultProject.equals("")) {
-						popUpReportSurvey();
+				if (update_progress.equals("belum")) {
+					if (project && fo && wireless) {
+						if (!resultProject.equals("") && !resultFO.equals("") && !resultWireless.equals("")) {
+							popUpReportSurvey();
+						} else {
+							Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+						}
+					} else if (project && fo) {
+						if (!resultProject.equals("") && !resultFO.equals("")) {
+							popUpReportSurvey();
+						} else {
+							Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+						}
+					} else if (project && wireless) {
+						if (!resultProject.equals("") && !resultWireless.equals("")) {
+							popUpReportSurvey();
+						} else {
+							Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+						}
+					} else if (project) {
+						if (!resultProject.equals("")) {
+							popUpReportSurvey();
+						} else {
+							Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+						}
 					} else {
 						Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-					Toast.makeText(ReportSurvey.this, "Silahkan lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+					Toast.makeText(ReportSurvey.this, "Anda sudah pernah melakukan report ini", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -230,7 +300,8 @@ public class ReportSurvey extends AppCompatActivity {
 					jBody.put("status_job", resultProject);
 					jBody.put("coverage_wireless", resultWireless);
 					jBody.put("coverage_fo", resultFO);
-					jBody.put("falg_custom",flag_custom);
+					jBody.put("falg_custom", flag_custom);
+					jBody.put("note", noteReportSurvey.getText().toString());
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

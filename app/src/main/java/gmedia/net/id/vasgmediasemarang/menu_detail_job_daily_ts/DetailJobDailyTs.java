@@ -62,7 +62,8 @@ public class DetailJobDailyTs extends AppCompatActivity {
 	private Proses proses;
 	private TextView tanggal, waktu, namaLokasi, alamat, jenis_project, note;
 	private LinearLayout btnMaps;
-	private String layanan_fo = "", layanan_wireless = "", flag_custom = "", tgl = "", latitude = "", longitude = "";
+	private String layanan_fo = "", layanan_wireless = "", flag_custom = "", tgl = "",
+			latitude = "", longitude = "", update_progress = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +128,8 @@ public class DetailJobDailyTs extends AppCompatActivity {
 				intent.putExtra("jenis_project", jenis_project.getText().toString());
 				intent.putExtra("statusSurvey", statusSurvey);
 				intent.putExtra("flag_custom", flag_custom);
+				intent.putExtra("update_progres", update_progress);
+				intent.putExtra("note", note.getText().toString());
 				startActivity(intent);
 			}
 		});
@@ -155,8 +158,9 @@ public class DetailJobDailyTs extends AppCompatActivity {
 						note.setText(detail.getString("progress_note"));
 						latitude = detail.getString("latitude");
 						longitude = detail.getString("longitude");
-						layanan_fo = detail.getString("layanan_fo");
-						layanan_wireless = detail.getString("layanan_wireless");
+						layanan_fo = detail.getString("coverage_fo");
+						layanan_wireless = detail.getString("coverage_wireless");
+						update_progress = detail.getString("update_progress");
 						JSONArray pic = detail.getJSONArray("pics");
 						for (int i = 0; i < pic.length(); i++) {
 							JSONObject isiPIC = pic.getJSONObject(i);

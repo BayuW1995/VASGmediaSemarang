@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import gmedia.net.id.vasgmediasemarang.Login;
 import gmedia.net.id.vasgmediasemarang.MainActivity;
 
@@ -38,7 +41,7 @@ public class SessionManager {
 	public static final String KEY_USER_ID = "name";
 	public static final String KEY_TOKEN = "token";
 	public static final String KEY_NAME = "hahaha";
-
+	public static final String KEY_MENU = "menu";
 
 	// Constructor
 	public SessionManager(Context context) {
@@ -51,11 +54,12 @@ public class SessionManager {
 	/**
 	 * Create login session
 	 */
-	public void createLoginSession(String user_id, String nama, String token) {
+	public void createLoginSession(String user_id, String nama, String token, Set<String> menu) {
 		editor.putBoolean(IS_LOGIN, true);
 		editor.putString(KEY_USER_ID, user_id);
 		editor.putString(KEY_NAME, nama);
 		editor.putString(KEY_TOKEN, token);
+		editor.putStringSet(KEY_MENU, menu);
 		editor.commit();
 	}
 
@@ -102,6 +106,12 @@ public class SessionManager {
 			Login.isIDPerusahaan = false;
 		}
 	}*/
+
+	public HashSet<String> getMenu(){
+
+		Set<String> result = new HashSet<String>();
+		return (HashSet<String>) pref.getStringSet(KEY_MENU, result);
+	}
 
 	public String getKeyUserId() {
 		return pref.getString(KEY_USER_ID, "");
