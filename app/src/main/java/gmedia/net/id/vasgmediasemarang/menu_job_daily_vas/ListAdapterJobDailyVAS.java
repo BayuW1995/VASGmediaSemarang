@@ -132,7 +132,9 @@ public class ListAdapterJobDailyVAS extends ArrayAdapter {
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}
-								ApiVolley request = new ApiVolley(context, jBody, "POST", LinkURL.UrlDeleteJadwal, "", "", 0, new ApiVolley.VolleyCallback() {
+								ApiVolley request = new ApiVolley(context, jBody, "POST",
+										LinkURL.UrlDeleteJadwal, "", "", 0,
+										new ApiVolley.VolleyCallback() {
 									@Override
 									public void onSuccess(String result) {
 										proses.DismissDialog();

@@ -1,6 +1,9 @@
 package gmedia.net.id.vasgmediasemarang.utils;
 
 public class LinkURL {
+
+	public static final String TAG = "vas_log";
+
 	public static String BaseURL = "https://erpsmg.gmedia.id/vas_v2/api/";
 	//	public static String BaseURL = "http://192.168.20.34:8091/api/";
 	public static String UrlLogin = BaseURL + "authentication/login";
@@ -22,8 +25,7 @@ public class LinkURL {
 	public static String UrlReportSementaraEquipment = BaseURL + "vas/report/save_draft";
 	public static String UrlUploadGambarSelfieReportVAS = BaseURL + "vas/report/upload_selfi_pic";
 	public static String UrlUploadGambarTTDReportVAS = BaseURL + "vas/report/upload_ttd_pic";
-	public static String UrlSendReportSurvey = BaseURL + "support/schedule/update_progress";
-	public static String UrlDataDropdownPIC = BaseURL + "customer/pic_customer/";
+	public static String UrlDataDropdownPIC = BaseURL + "customer/pic_by_site";
 	public static String UrlTambahDataPIC = BaseURL + "customer/add_pic_report";
 	public static String UrlDataDropdownTaskInfoCR = BaseURL + "master/task_info?start=0&limit=10&search=";
 	public static String UrlDataDropdownContractUnitCR = BaseURL + "master/contract_unit";
@@ -32,4 +34,10 @@ public class LinkURL {
 	public static String UrlSaveDataReportCR = BaseURL + "cr/report/save";
 	public static String UrlSendDataReportCR = BaseURL + "cr/report/send";
 	public static String UrlUpVersion = BaseURL + "app/about";
+
+	//public static String UrlSendReportSurvey = BaseURL + "support/schedule/update_progress";
+	public static String UrlSendReportSurvey = BaseURL + "support/report_onsite/submit";
+	public static String UrlMasterSatuanBarang = BaseURL + "master/satuan_barang";
+	public static String UrlDraftReport = BaseURL + "support/report_onsite/draft";
+
 }

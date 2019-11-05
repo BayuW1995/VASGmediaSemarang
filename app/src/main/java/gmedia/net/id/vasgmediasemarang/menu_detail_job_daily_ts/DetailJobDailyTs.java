@@ -1,7 +1,6 @@
 package gmedia.net.id.vasgmediasemarang.menu_detail_job_daily_ts;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -25,8 +23,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import gmedia.net.id.vasgmediasemarang.R;
-import gmedia.net.id.vasgmediasemarang.menu_job_daily_ts.JobDailyTS;
-import gmedia.net.id.vasgmediasemarang.menu_job_daily_vas.JobDailyVAS;
 import gmedia.net.id.vasgmediasemarang.menu_report_survey.ReportSurvey;
 import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
 import gmedia.net.id.vasgmediasemarang.utils.ConvertDate;
@@ -118,6 +114,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 				}
 			}
 		});
+
 		btnReportSurvey.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -137,10 +134,11 @@ public class DetailJobDailyTs extends AppCompatActivity {
 
 	private void prepareDataJobDailyTS() {
 		proses.ShowDialog();
-		ApiVolley request = new ApiVolley(DetailJobDailyTs.this, new JSONObject(), "GET", LinkURL.UrlDetailJobDailyTS + idJobDailyTS + "/" + flag_custom, "", "", 0, new ApiVolley.VolleyCallback() {
+		ApiVolley request = new ApiVolley(DetailJobDailyTs.this, new JSONObject(),
+				"GET", LinkURL.UrlDetailJobDailyTS + idJobDailyTS + "/" + flag_custom,
+				"", "", 0, new ApiVolley.VolleyCallback() {
 			@Override
 			public void onSuccess(String result) {
-
 				list = new ArrayList<>();
 				try {
 					JSONObject object = new JSONObject(result);
@@ -179,7 +177,7 @@ public class DetailJobDailyTs extends AppCompatActivity {
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
-					Log.d("erroywoy", e.getMessage());
+					Log.d(LinkURL.TAG, e.getMessage());
 				}
 			}
 
@@ -210,6 +208,5 @@ public class DetailJobDailyTs extends AppCompatActivity {
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
-
 	}
 }

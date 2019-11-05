@@ -41,10 +41,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import gmedia.net.id.vasgmediasemarang.menu_history_ts.HistoryTS;
-import gmedia.net.id.vasgmediasemarang.menu_history_vas.HistoryVAS;
-import gmedia.net.id.vasgmediasemarang.menu_job_daily_ts.JobDailyTS;
-import gmedia.net.id.vasgmediasemarang.menu_job_daily_vas.JobDailyVAS;
 import gmedia.net.id.vasgmediasemarang.utils.ApiVolley;
 import gmedia.net.id.vasgmediasemarang.utils.LinkURL;
 import gmedia.net.id.vasgmediasemarang.utils.Proses;
@@ -130,7 +126,6 @@ public class MainActivity extends RuntimePermissionsActivity
 		link = "";
 
 		ApiVolley request = new ApiVolley(MainActivity.this, new JSONObject(), "GET", LinkURL.UrlUpVersion, "", "", 0, new ApiVolley.VolleyCallback() {
-
 			@Override
 			public void onSuccess(String result) {
 
@@ -185,7 +180,6 @@ public class MainActivity extends RuntimePermissionsActivity
 
 			@Override
 			public void onError(String result) {
-
 				Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
 			}
 		});

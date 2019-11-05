@@ -2,8 +2,6 @@ package gmedia.net.id.vasgmediasemarang.menu_report_survey;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.List;
 
 import gmedia.net.id.vasgmediasemarang.R;
-import gmedia.net.id.vasgmediasemarang.menu_equipment.ListAdapterEquipment;
-import gmedia.net.id.vasgmediasemarang.menu_equipment.ModelListEquipment;
 
 public class ListAdapterReportSurvey extends ArrayAdapter {
 	private Context context;

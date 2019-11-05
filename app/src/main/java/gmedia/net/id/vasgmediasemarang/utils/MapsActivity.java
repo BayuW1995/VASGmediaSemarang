@@ -1,7 +1,6 @@
 package gmedia.net.id.vasgmediasemarang.utils;
 
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import gmedia.net.id.vasgmediasemarang.R;
-import gmedia.net.id.vasgmediasemarang.menu_detail_job_daily_ts.DetailJobDailyTs;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 

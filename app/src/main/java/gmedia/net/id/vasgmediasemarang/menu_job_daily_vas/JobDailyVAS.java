@@ -41,51 +41,7 @@ public class JobDailyVAS extends AppCompatActivity {
 	private ListView listView;
 	private ArrayList<ModelListJobDailyVAS> list;
 	private ListAdapterJobDailyVAS adapter;
-	private String tgl[] =
-			{
-					"Senin, 10 juli 2019",
-					"Selasa, 11 juli 2019",
-					"Rabu, 12 juli 2019",
-					"Kamis, 13 juli 2019",
-					"jum'at, 14 juli 2019",
-					"Sabtu, 15 juli 2019"
-			};
-	private String nama[] =
-			{
-					"E-Plaza",
-					"Fentura Windows Asia (KIC)",
-					"E-Plaza",
-					"Fentura Windows Asia (KIC)",
-					"E-Plaza",
-					"Fentura Windows Asia (KIC)"
-			};
-	private String alamat[] =
-			{
-					"Gajamada Plaza Lt.2 B29 Simpang Lima",
-					"Gajamada Plaza Lt.2 B29 Simpang Lima",
-					"Gajamada Plaza Lt.2 B29 Simpang Lima",
-					"Gajamada Plaza Lt.2 B29 Simpang Lima",
-					"Gajamada Plaza Lt.2 B29 Simpang Lima",
-					"Gajamada Plaza Lt.2 B29 Simpang Lima"
-			};
-	private String jam[] =
-			{
-					"12.00",
-					"12.00",
-					"12.00",
-					"12.00",
-					"12.00",
-					"12.00"
-			};
-	private String keterangan[] =
-			{
-					"Request CRO Request CRO Request CRO Request CRO Request CRO Request CRO Request CRO",
-					"Request CRO",
-					"Request CRO",
-					"Request CRO",
-					"Request CRO",
-					"Request CRO"
-			};
+
 	private ImageView btnTanggal;
 	private TextView txtTanggal;
 	public static String tanggal = "";
@@ -153,7 +109,9 @@ public class JobDailyVAS extends AppCompatActivity {
 						prepareDataJobDailyVAS();
 					}
 				};
-				new DatePickerDialog(JobDailyVAS.this, date, customDate.get(java.util.Calendar.YEAR), customDate.get(java.util.Calendar.MONTH), customDate.get(java.util.Calendar.DATE)).show();
+				new DatePickerDialog(JobDailyVAS.this, date,
+						customDate.get(java.util.Calendar.YEAR), customDate.get(java.util.Calendar.MONTH),
+						customDate.get(java.util.Calendar.DATE)).show();
 			}
 		});
 		btnTambahKlien.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +215,8 @@ public class JobDailyVAS extends AppCompatActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		ApiVolley request = new ApiVolley(JobDailyVAS.this, jBody, "POST", LinkURL.UrlPublishJadwalVAS, "", "", 0, new ApiVolley.VolleyCallback() {
+		ApiVolley request = new ApiVolley(JobDailyVAS.this, jBody, "POST",
+				LinkURL.UrlPublishJadwalVAS, "", "", 0, new ApiVolley.VolleyCallback() {
 			@Override
 			public void onSuccess(String result) {
 				proses.DismissDialog();

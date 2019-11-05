@@ -1,9 +1,9 @@
 package gmedia.net.id.vasgmediasemarang;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -40,9 +40,9 @@ public class Login extends AppCompatActivity {
 	}
 
 	private void initUI() {
-		username = (EditText) findViewById(R.id.etUsernameLogin);
-		password = (EditText) findViewById(R.id.etPasswordLogin);
-		btnLogin = (RelativeLayout) findViewById(R.id.btnLogin);
+		username = findViewById(R.id.etUsernameLogin);
+		password = findViewById(R.id.etPasswordLogin);
+		btnLogin = findViewById(R.id.btnLogin);
 	}
 
 	private void initAction() {
@@ -52,11 +52,9 @@ public class Login extends AppCompatActivity {
 				if (username.getText().toString().equals("")) {
 					username.setError("Mohon Di isi");
 					username.requestFocus();
-					return;
 				} else if (password.getText().toString().equals("")) {
 					password.setError("Mohon Di isi");
 					username.requestFocus();
-					return;
 				} else {
 					prepareLogin();
 				}
@@ -73,7 +71,8 @@ public class Login extends AppCompatActivity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		ApiVolley request = new ApiVolley(Login.this, jBody, "POST", LinkURL.UrlLogin, "", "", 0, new ApiVolley.VolleyCallback() {
+		ApiVolley request = new ApiVolley(Login.this, jBody, "POST", LinkURL.UrlLogin,
+				"", "", 0, new ApiVolley.VolleyCallback() {
 			@Override
 			public void onSuccess(String result) {
 				proses.DismissDialog();
@@ -87,7 +86,7 @@ public class Login extends AppCompatActivity {
 						String token = object.getJSONObject("response").getString("token");
 						JSONArray jMenus = object.getJSONObject("response").getJSONArray("menus");
 
-						Set<String> listMenu = new HashSet<String>();
+						Set<String> listMenu = new HashSet<>();
 						listMenu.clear();
 						for(int i = 0; i < jMenus.length(); i++){
 
@@ -99,10 +98,11 @@ public class Login extends AppCompatActivity {
 						startActivity(intent);
 						finish();
 					} else {
-						Toast.makeText(Login.this, message, Toast.LENGTH_LONG);
+						Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
+					Log.e("login_log", e.getMessage());
 				}
 			}
 
@@ -110,6 +110,7 @@ public class Login extends AppCompatActivity {
 			public void onError(String result) {
 				proses.DismissDialog();
 				Toast.makeText(Login.this, "terjadi kesalahan", Toast.LENGTH_LONG).show();
+				Log.e("login_log", result);
 			}
 		});
 	}
